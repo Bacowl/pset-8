@@ -9,8 +9,8 @@ const winningConditions = [
   [0, 4, 8],
   [2, 4, 6]
 ];
-const markedIndexX = [];
-const markedIndexO = [];
+let markedIndexX = [];
+let markedIndexO = [];
 
 ///////////////////// APP STATE (VARIABLES) /////////////////////////
 let turn;
@@ -34,6 +34,8 @@ function init() {
     "", "", "",
     "", "", ""
   ];
+  markedIndexX = [];
+  markedIndexO = [];
   turn = "X";
   win = null;
   render();
@@ -66,6 +68,7 @@ function takeTurn(e) {
       }
       board[index] = "X";
 ///////////////////// StartGame /////////////////////////////////////
+
 if (markedIndexX.length == 1) {
   if (markedIndexX == 0 || markedIndexX == 2 || markedIndexX == 6 || markedIndexX == 8) {
     board[4] = "O"
@@ -166,7 +169,7 @@ if (markedIndexX.length == 1) {
   }else if (board[1] == "X" && board[7] == board[1] && board[4] != "O") {
     board[4] = "O"
   }else if (board[4] == "X" && board[7] == board[4] && board[1] != "O") {
-    board[2] = "O"
+    board[1] = "O"
   }else if (board[2] == "X" && board[2] == board[5] && board[8] != "O") {
     board[8] = "O"
   }else if (board[2] == "X" && board[2] == board[8] && board[5] != "O") {
@@ -187,7 +190,7 @@ if (markedIndexX.length == 1) {
     board[2] = "O"
     ///////////////////// ELSE /////////////////////////////////////
   } else {
-    while (markedIndexO.includes(randomRemainingNumber) || markedIndexX.includes(randomRemainingNumber)) {
+    while (board.includes(randomRemainingNumber) || board.includes(randomRemainingNumber)) {
       var randomRemainingNumber = Math.floor(Math.random()*10);
     }
     board[randomRemainingNumber] = "O";
