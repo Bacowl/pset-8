@@ -15,14 +15,14 @@ let markedIndexO = [];
 ///////////////////// APP STATE (VARIABLES) /////////////////////////
 let turn;
 let board;
-
+let count;
 let win;
 let randomRemainingNumber;
 ///////////////////// CACHED ELEMENT REFERENCES /////////////////////
 const squares = Array.from(document.querySelectorAll("#board div"));
 const message = document.querySelector("h2");
 ///////////////////// EVENT LISTENERS ///////////////////////////////
-window.onload = init
+window.onload = init;
 document.getElementById("board").onclick = takeTurn;
 document.getElementById("reset-button").onclick = init;
 ///////////////////// FUNCTIONS /////////////////////////////////////
@@ -39,6 +39,7 @@ function init() {
   markedIndexO = [];
   turn = "X";
   win = null;
+  count = 0;
   render();
 }
 
@@ -68,9 +69,10 @@ function takeTurn(e) {
         markedIndexX[markedIndexX.length] = index
       }
       board[index] = "X";
+      win = getWinner();
 ///////////////////// StartGame /////////////////////////////////////
 
-if (markedIndexX.length == 1) {
+if (markedIndexX.length == 1 && !win) {
   if (markedIndexX == 0 || markedIndexX == 2 || markedIndexX == 6 || markedIndexX == 8) {
     board[4] = "O"
     markedIndexO[markedIndexO.length] = 4
@@ -90,7 +92,7 @@ if (markedIndexX.length == 1) {
     board[0] = "O"
     markedIndexO[markedIndexO.length] = 0
   }
-} else {
+} else if (!win && count != 8){
   ///////////////////// WinCheck /////////////////////////////////////
   if (board[0] == "O" && board[0] == board[1] && board[2] != "X") {
     board.splice(2,1,"O")
@@ -143,60 +145,65 @@ if (markedIndexX.length == 1) {
     ///////////////////// BlockCheck /////////////////////////////////////
   } else if (board[0] == "X" && board[0] == board[1] && board[2] == "") {
     board.splice(2,1,"O")
-  } else if (board[0] == "X" && board[0] == board[2] && board[1] != "O") {
+  } else if (board[0] == "X" && board[0] == board[2] && board[1] == "") {
     board.splice(1,1,"O")
-  } else if (board[1] == "X" && board[1] == board[2] && board[0] != "O") {
+  } else if (board[1] == "X" && board[1] == board[2] && board[0] == "") {
     board.splice(0,1,"O")
-  }else if (board[3] == "X" && board[3] == board[4] && board[5] != "O") {
+  }else if (board[3] == "X" && board[3] == board[4] && board[5] == "") {
     board.splice(5,1,"O")
-  }else if (board[3] == "X" && board[3] == board[5] && board[4] != "O") {
+  }else if (board[3] == "X" && board[3] == board[5] && board[4] == "") {
     board.splice(4,1,"O")
-  }else if (board[4] == "X" && board[4] == board[5] && board[3] != "O") {
+  }else if (board[4] == "X" && board[4] == board[5] && board[3] == "") {
     board.splice(3,1,"O")
-  }else if (board[6] == "X" && board[6] == board[7] && board[8] != "O") {
+  }else if (board[6] == "X" && board[6] == board[7] && board[8] == "") {
     board.splice(8,1,"O")
-  }else if (board[6] == "X" && board[6] == board[8] && board[7] != "O") {
+  }else if (board[6] == "X" && board[6] == board[8] && board[7] == "") {
     board.splice(7,1,"O")
-  }else if (board[7] == "X" && board[7] == board[8] && board[6] != "O") {
+  }else if (board[7] == "X" && board[7] == board[8] && board[6] == "") {
     board.splice(6,1,"O")
-  }else if (board[0] == "X" && board[3] == board[0] && board[6] != "O") {
+  }else if (board[0] == "X" && board[3] == board[0] && board[6] == "") {
     board[6] = "O"
-  }else if (board[0] == "X" && board[6] == board[0] && board[3] != "O") {
+  }else if (board[0] == "X" && board[6] == board[0] && board[3] == "") {
     board[3] = "O"
-  }else if (board[6] == "X" && board[3] == board[6] && board[0] != "O") {
+  }else if (board[6] == "X" && board[3] == board[6] && board[0] == "") {
     board[0] = "O"
-  }else if (board[1] == "X" && board[4] == board[1] && board[7] != "O") {
+  }else if (board[1] == "X" && board[4] == board[1] && board[7] == "") {
     board[7] = "O"
-  }else if (board[1] == "X" && board[7] == board[1] && board[4] != "O") {
+  }else if (board[1] == "X" && board[7] == board[1] && board[4] == "") {
     board[4] = "O"
-  }else if (board[4] == "X" && board[7] == board[4] && board[1] != "O") {
+  }else if (board[4] == "X" && board[7] == board[4] && board[1] == "") {
     board[1] = "O"
-  }else if (board[2] == "X" && board[2] == board[5] && board[8] != "O") {
+  }else if (board[2] == "X" && board[2] == board[5] && board[8] == "") {
     board[8] = "O"
-  }else if (board[2] == "X" && board[2] == board[8] && board[5] != "O") {
+  }else if (board[2] == "X" && board[2] == board[8] && board[5] == "") {
     board[5] = "O"
-  }else if (board[5] == "X" && board[5] == board[8] && board[2] != "O") {
+  }else if (board[5] == "X" && board[5] == board[8] && board[2] == "") {
     board[2] = "O"
-  }else if (board[0] == "X" && board[0] == board[4] && board[8] != "O") {
+  }else if (board[0] == "X" && board[0] == board[4] && board[8] == "") {
     board[8] = "O"
-  }else if (board[0] == "X" && board[0] == board[8] && board[4] != "O") {
+  }else if (board[0] == "X" && board[0] == board[8] && board[4] == "") {
     board[4] = "O"
-  }else if (board[4] == "X" && board[4] == board[8] && board[0] != "O") {
+  }else if (board[4] == "X" && board[4] == board[8] && board[0] == "") {
     board[0] = "O"
-  }else if (board[2] == "X" && board[2] == board[4] && board[6] != "O") {
+  }else if (board[2] == "X" && board[2] == board[4] && board[6] == "") {
     board[6] = "O"
-  }else if (board[2] == "X" && board[2] == board[6] && board[4] != "O") {
+  }else if (board[2] == "X" && board[2] == board[6] && board[4] == "") {
     board[4] = "O"
-  }else if (board[6] == "X" && board[6] == board[4] && board[2] != "O") {
+  }else if (board[6] == "X" && board[6] == board[4] && board[2] == "") {
     board[2] = "O"
     ///////////////////// ELSE /////////////////////////////////////
   } else {
-    while (board[randomRemainingNumber] == "X" || board[randomRemainingNumber] == "O" || randomRemainingNumber == undefined || randomRemainingNumber == -1) {
+    while (board[randomRemainingNumber] == "X" || board[randomRemainingNumber] == "O" || randomRemainingNumber == undefined || randomRemainingNumber == -1 || count == 8) {
       var randomRemainingNumber = Math.floor(Math.random()*10)-1;
+      console.log(randomRemainingNumber)
     }
-    board[randomRemainingNumber] = "O";
+    if (count != 8 ) {
+      board.splice(randomRemainingNumber,1,"O")
+    }
+
   }
 }
+count = count + 2
       win = getWinner();
       render();
     }
