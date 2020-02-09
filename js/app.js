@@ -17,7 +17,7 @@ let turn;
 let board;
 let count;
 let win;
-let randomRemainingNumber;
+let randomRemainingNumber
 ///////////////////// CACHED ELEMENT REFERENCES /////////////////////
 const squares = Array.from(document.querySelectorAll("#board div"));
 const message = document.querySelector("h2");
