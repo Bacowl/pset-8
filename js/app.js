@@ -21,6 +21,7 @@ let randomRemainingNumber;
 ///////////////////// CACHED ELEMENT REFERENCES /////////////////////
 const squares = Array.from(document.querySelectorAll("#board div"));
 const message = document.querySelector("h2");
+const totalWins = document.getElementById("wins")
 ///////////////////// EVENT LISTENERS ///////////////////////////////
 window.onload = init;
 document.getElementById("board").onclick = takeTurn;
@@ -53,9 +54,13 @@ function getWinner() {
       board[condition[1]] === board[condition[2]]
     ) {
       winner = board[condition[0]];
+      if (winner == "X") {
+        xWins = xWins + 0.5
+      } else if (winner == "O") {
+        notxWins++
+      }
     }
   });
-
   return winner ? winner : board.includes("") ? null : "T";
 }
 function takeTurn(e) {
@@ -213,5 +218,4 @@ function render() {
   board.forEach(function(mark, index) {
     squares[index].textContent = mark;    // writes an X or an O on board
   });
-  message.textContent = `Turn: X`;
 }
