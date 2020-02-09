@@ -17,6 +17,7 @@ let turn;
 let board;
 
 let win;
+let randomRemainingNumber;
 ///////////////////// CACHED ELEMENT REFERENCES /////////////////////
 const squares = Array.from(document.querySelectorAll("#board div"));
 const message = document.querySelector("h2");
@@ -92,23 +93,23 @@ if (markedIndexX.length == 1) {
 } else {
   ///////////////////// WinCheck /////////////////////////////////////
   if (board[0] == "O" && board[0] == board[1] && board[2] != "X") {
-    board[2] == "O"
+    board.splice(2,1,"O")
   } else if (board[0] == "O" && board[0] == board[2] && board[1] != "X") {
-    board[1] == "O"
+    board.splice(1,1,"O")
   } else if (board[1] == "O" && board[1] == board[2] && board[0] != "X") {
-    board[0] == "O"
+    board.splice(0,1,"O")
   }else if (board[3] == "O" && board[3] == board[4] && board[5] != "X") {
-    board[5] == "O"
+    board.splice(5,1,"O")
   }else if (board[3] == "O" && board[3] == board[5] && board[4] != "X") {
-    board[4] == "O"
+    board.splice(4,1,"O")
   }else if (board[4] == "O" && board[4] == board[5] && board[3] != "X") {
-    board[3] == "O"
+    board.splice(3,1,"O")
   }else if (board[6] == "O" && board[6] == board[7] && board[8] != "X") {
-    board[8] == "O"
+    board.splice(8,1,"O")
   }else if (board[6] == "O" && board[6] == board[8] && board[7] != "X") {
-    board[7] == "O"
+    board.splice(7,1,"O")
   }else if (board[7] == "O" && board[7] == board[8] && board[6] != "X") {
-    board[6] == "O"
+    board.splice(6,1,"O")
   }else if (board[0] == "O" && board[3] == board[0] && board[6] != "X") {
     board[6] = "O"
   }else if (board[0] == "O" && board[6] == board[0] && board[3] != "X") {
@@ -140,24 +141,24 @@ if (markedIndexX.length == 1) {
   }else if (board[6] == "O" && board[6] == board[4] && board[2] != "X") {
     board[2] = "O"
     ///////////////////// BlockCheck /////////////////////////////////////
-  } else if (board[0] == "X" && board[0] == board[1] && board[2] != "O") {
-    board[2] == "O"
+  } else if (board[0] == "X" && board[0] == board[1] && board[2] == "") {
+    board.splice(2,1,"O")
   } else if (board[0] == "X" && board[0] == board[2] && board[1] != "O") {
-    board[1] == "O"
+    board.splice(1,1,"O")
   } else if (board[1] == "X" && board[1] == board[2] && board[0] != "O") {
-    board[0] == "O"
+    board.splice(0,1,"O")
   }else if (board[3] == "X" && board[3] == board[4] && board[5] != "O") {
-    board[5] == "O"
+    board.splice(5,1,"O")
   }else if (board[3] == "X" && board[3] == board[5] && board[4] != "O") {
-    board[4] == "O"
+    board.splice(4,1,"O")
   }else if (board[4] == "X" && board[4] == board[5] && board[3] != "O") {
-    board[3] == "O"
+    board.splice(3,1,"O")
   }else if (board[6] == "X" && board[6] == board[7] && board[8] != "O") {
-    board[8] == "O"
+    board.splice(8,1,"O")
   }else if (board[6] == "X" && board[6] == board[8] && board[7] != "O") {
-    board[7] == "O"
+    board.splice(7,1,"O")
   }else if (board[7] == "X" && board[7] == board[8] && board[6] != "O") {
-    board[6] == "O"
+    board.splice(6,1,"O")
   }else if (board[0] == "X" && board[3] == board[0] && board[6] != "O") {
     board[6] = "O"
   }else if (board[0] == "X" && board[6] == board[0] && board[3] != "O") {
@@ -190,8 +191,8 @@ if (markedIndexX.length == 1) {
     board[2] = "O"
     ///////////////////// ELSE /////////////////////////////////////
   } else {
-    while (board.includes(randomRemainingNumber) || board.includes(randomRemainingNumber)) {
-      var randomRemainingNumber = Math.floor(Math.random()*10);
+    while (board[randomRemainingNumber] == "X" || board[randomRemainingNumber] == "O" || randomRemainingNumber == undefined || randomRemainingNumber == -1) {
+      var randomRemainingNumber = Math.floor(Math.random()*10)-1;
     }
     board[randomRemainingNumber] = "O";
   }
