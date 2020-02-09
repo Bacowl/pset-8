@@ -6,6 +6,13 @@
 body {
   text-align: center;
   font-family: "Roboto", monospace;
+  background-color: lightgreen;
+  margin-top:0px;
+  margin-bottom:0px;
+  margin-right:0px;
+  margin-left:0px;
+  border: 10px solid grey;
+  border-bottom: lightgray;
 }
 
 /*
@@ -15,9 +22,10 @@ body {
 
 h1 {
   margin: 0 auto;
-  font-family: "Major Mono Display", monospace;
+  font-family: "Oswald", monospace;
   font-size: 48px;
   margin: 2%;
+  color: green;
 }
 
 /*
@@ -29,6 +37,7 @@ h2 {
   font-size: 36px;
   font-weight: lighter;
   margin: 2%;
+  color: white;
 }
 
 /*
