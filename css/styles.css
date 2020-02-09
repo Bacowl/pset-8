@@ -92,7 +92,7 @@ h2 {
  */
 
 .square:hover {
-  background-color: lightgray;
+  background-color: turquoise;
   cursor: pointer;
 }
 
@@ -118,6 +118,6 @@ h2 {
 
 #reset-button:hover {
   background-color: black;
-  color: white;
+  color: turquoise;
   cursor: pointer;
 }

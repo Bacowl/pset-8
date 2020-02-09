@@ -54,11 +54,6 @@ function getWinner() {
       board[condition[1]] === board[condition[2]]
     ) {
       winner = board[condition[0]];
-      if (winner == "X") {
-        xWins = xWins + 0.5
-      } else if (winner == "O") {
-        notxWins++
-      }
     }
   });
   return winner ? winner : board.includes("") ? null : "T";
